@@ -46,6 +46,10 @@ class Database:
             ("end_time", 1)
         ])
 
+        # Customer indexes
+        await cls.db.customers.create_index("whatsapp_id", unique=True)
+        await cls.db.customers.create_index("phone")
+
     @classmethod
     async def close_db(cls):
         if cls.client:

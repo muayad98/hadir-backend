@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.routes import business, service, bookings
+from app.routes import business, service, bookings, customers
 from app.db import db
 import os
 from dotenv import load_dotenv
@@ -17,6 +17,7 @@ app = FastAPI(
 app.include_router(business.router, prefix="/business", tags=["business"])
 app.include_router(service.router, prefix="/services", tags=["services"])
 app.include_router(bookings.router, prefix="/bookings", tags=["bookings"])
+app.include_router(customers.router, prefix="/customers", tags=["customers"])
 
 @app.on_event("startup")
 async def startup_db_client():
